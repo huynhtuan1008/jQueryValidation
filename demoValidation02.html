@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	    <meta charset="utf-8">
+	    <title>Demo for jQuery validate</title>
+	    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+	    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js" type="text/javascript"></script>
+	    <script src="demoValidation.js" type="text/javascript"></script>
+	    <style>
+		label.error{
+			color: red;
+		}
+		input.error { 
+			border-color: red;
+			border-radius: 3px;
+		}
+	    </style>
+	</head>
+	<body>
+	<div id="main">
+	    <form method="get" id="demoForm" action="">
+		<p>
+			<label>Email</label>
+			<input id="email"name="email" type="email" />
+		</p>
+		<p>
+			<label>Password</label>
+			<input id="password" type="password" name="password" />
+		</p>
+		<p>
+		<input type="submit" value="Đăng ký" id="dangky"/>
+		</p>
+	    </form>
+	</div>
+	<script>
+		function validatePassword(value, element) {
+			var regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,16}$/g;
+			return this.optional(element) || regex.test(value);
+		}
+		$.validator.addMethod("password", validatePassword,"Hãy nhập password từ 8 đến 16 ký tự bao gồm chữ hoa, chữ thường và ít nhất một chữ số");
+	</script>
+	</body>
+</html>
